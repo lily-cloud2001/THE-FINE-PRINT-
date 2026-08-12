@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fine Print — Women's Rights & Policy Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEAE0;
+    --paper-2:#E6E0D2;
+    --ink:#211B29;
+    --ink-soft:#4A4356;
+    --violet:#5B3A73;
+    --violet-deep:#3E2750;
+    --gold:#B98A1E;
+    --gold-soft:#E9D9AE;
+    --berry:#7A2048;
+    --line: rgba(33,27,41,0.14);
+    --radius: 10px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', sans-serif;
+    line-height:1.55;
+  }
+  a{color:var(--violet-deep);}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+
+  .spine{
+    position:fixed; left:0; top:0; bottom:0; width:34px;
+    background:var(--violet-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .spine span{
+    color:var(--gold-soft);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.3em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+  }
+  body{padding-left:34px;}
+  @media (max-width:640px){
+    .spine{display:none;}
+    body{padding-left:0;}
+  }
+
+  header.masthead{
+    border-bottom:2px solid var(--ink);
+    padding:40px 0 22px;
+  }
+  .kicker{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--berry);
+    margin:0 0 10px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:52px;
+    line-height:1;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  .tagline{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin:0;
+  }
+  .masthead-row{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;
+  }
+  .issue-badge{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+
+  nav.tabs{
+    display:flex; gap:4px; flex-wrap:wrap;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+  }
+  nav.tabs button{
+    font-family:'Public Sans', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    background:transparent;
+    border:1px solid transparent;
+    padding:7px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    color:var(--ink-soft);
+  }
+  nav.tabs button.active{
+    background:var(--violet-deep);
+    color:var(--gold-soft);
+  }
+  nav.tabs button:hover:not(.active){
+    border-color:var(--line);
+  }
+
+  .composer{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-bottom:36px;
+  }
+  .composer-head{
+    display:flex; justify-content:space-between; align-items:center; cursor:pointer;
+  }
+  .composer-head h2{
+    font-family:'Fraunces', serif;
+    font-size:19px;
+    font-weight:600;
+    margin:0;
+  }
+  .composer-head .arrow{transition:transform 0.15s; font-size:14px;}
+  .composer-body{display:none; margin-top:18px;}
+  .composer-body.open{display:block;}
+  .field-row{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;}
+  .field{flex:1; min-width:180px; display:flex; flex-direction:column; gap:5px;}
+  .field label{font-size:12px; color:var(--ink-soft); font-weight:500;}
+  input[type=text], input[type=url], select, textarea{
+    font-family:'Public Sans', sans-serif;
+    font-size:14px;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:#fff;
+    color:var(--ink);
+  }
+  textarea{resize:vertical; min-height:110px;}
+  .type-toggle{display:flex; gap:8px;}
+  .type-toggle button{
+    flex:1; padding:9px; border-radius:6px; border:1px solid var(--line);
+    background:#fff; font-size:13px; cursor:pointer; font-weight:500; color:var(--ink-soft);
+  }
+  .type-toggle button.active{
+    background:var(--violet); color:#fff; border-color:var(--violet);
+  }
+  .publish-btn{
+    background:var(--berry); color:#fff; border:none; padding:10px 20px;
+    border-radius:6px; font-weight:600; font-size:14px; cursor:pointer; margin-top:6px;
+  }
+  .publish-btn:hover{background:var(--violet-deep);}
+  .composer-status{font-size:13px; margin-top:10px; color:var(--ink-soft);}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+    gap:20px;
+    margin-bottom:60px;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+    cursor:pointer;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .card:hover{border-color:var(--violet);}
+  .card-meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--berry);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:20px;
+    margin:0;
+    line-height:1.2;
+  }
+  .card p.excerpt{
+    font-size:14px; color:var(--ink-soft); margin:0;
+    flex:1;
+  }
+  .card .byline{font-size:12px; color:var(--ink-soft); margin-top:auto;}
+  .badge{
+    display:inline-block; font-size:10px; padding:2px 8px; border-radius:20px;
+    background:var(--gold-soft); color:#6b4e05; font-weight:600; letter-spacing:0.04em;
+  }
+  .badge.video{background:var(--violet); color:#fff;}
+
+  .empty{
+    text-align:center; padding:60px 20px; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:var(--radius); margin-bottom:60px;
+  }
+  .empty h3{font-family:'Fraunces',serif; font-size:22px; margin:0 0 8px; color:var(--ink);}
+
+  .overlay{
+    display:none; position:fixed; inset:0; background:rgba(33,27,41,0.55);
+    align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto; z-index:50;
+  }
+  .overlay.open{display:flex;}
+  .modal{
+    background:var(--paper); max-width:680px; width:100%; border-radius:var(--radius);
+    padding:36px; position:relative;
+  }
+  .modal .close{
+    position:absolute; top:16px; right:20px; background:none; border:none; font-size:22px;
+    cursor:pointer; color:var(--ink-soft);
+  }
+  .modal .card-meta{margin-bottom:14px;}
+  .modal h2{
+    font-family:'Fraunces', serif; font-size:30px; margin:0 0 6px; line-height:1.1;
+  }
+  .modal .byline{font-size:13px; color:var(--ink-soft); margin-bottom:20px;}
+  .modal .body-text{font-size:15px; white-space:pre-wrap;}
+  .modal .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin-bottom:16px;}
+  .modal .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:none;}
+
+  footer{
+    text-align:center; padding:30px 0 60px; font-size:12px; color:var(--ink-soft);
+    border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<div class="spine"><span>VOLUME I — WOMEN, MEDIA & POLICY</span></div>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="masthead-row">
+      <div>
+        <p class="kicker">A monthly research journal</p>
+        <h1 class="title">The Fine Print</h1>
+        <p class="tagline">Essays, reporting and short documentaries</p>
+      </div>
+      <div class="issue-badge" id="issueBadge">Issue —</div>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-filter="all" class="active">All pieces</button>
+    <button data-filter="article">Articles</button>
+    <button data-filter="video">Videos</button>
+  </nav>
+
+  <section class="composer">
+    <div class="composer-head" id="composerToggle">
+      <h2>Publish a new piece</h2>
+      <span class="arrow" id="composerArrow">＋</span>
+    </div>
+    <div class="composer-body" id="composerBody">
+      <div class="field-row">
+        <div class="field" style="flex:0 0 100%;">
+          <label>Format</label>
+          <div class="type-toggle">
+            <button type="button" class="active" id="typeArticleBtn">Article</button>
+            <button type="button" id="typeVideoBtn">Video</button>
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="fTitle" placeholder="e.g. Why girls drop out in Faridabad's resettlement colonies">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Author</label>
+          <input type="text" id="fAuthor" placeholder="Type a name">
+        </div>
+        <div class="field">
+          <label>Topic</label>
+          <input type="text" id="fCategory" placeholder="Type a topic">
+        </div>
+      </div>
+      <div class="field-row" id="articleFields">
+        <div class="field" style="flex:0 0 100%;">
+          <label>Article text</label>
+          <textarea id="fBody" placeholder="Write the full piece here. Readers will open it from the card."></textarea>
+        </div>
+      </div>
+      <div class="field-row" id="videoFields" style="display:none;">
+        <div class="field" style="flex:0 0 100%;">
+          <label>YouTube link (watch or share URL)</label>
+          <input type="url" id="fVideoUrl" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+        <div class="field" style="flex:0 0 100%;">
+          <label>Short description</label>
+          <textarea id="fVideoDesc" placeholder="One or two lines about what the video covers." style="min-height:70px;"></textarea>
+        </div>
+      </div>
+      <button class="publish-btn" id="publishBtn">Publish piece</button>
+      <p class="composer-status" id="composerStatus"></p>
+    </div>
+  </section>
+
+  <div id="gridContainer"></div>
+
+  <footer>Published to everyone who opens this page. Take care with what you post here — treat it like it's live.</footer>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="close" id="closeModal">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+// Initialize localStorage-based storage
+window.storage = {
+  get: async function(key, flag) {
+    try {
+      const value = localStorage.getItem(key);
+      return value ? { value } : null;
+    } catch (e) {
+      return null;
+    }
+  },
+  set: async function(key, value, flag) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      console.error('Storage error:', e);
+    }
+  }
+};
+
+let posts = [];
+let currentFilter = 'all';
+let currentType = 'article';
+
+function youtubeEmbedUrl(url){
+  try{
+    const u = new URL(url);
+    let id = '';
+    if(u.hostname.includes('youtu.be')){ id = u.pathname.slice(1); }
+    else if(u.searchParams.get('v')){ id = u.searchParams.get('v'); }
+    else if(u.pathname.includes('/embed/')){ id = u.pathname.split('/embed/')[1]; }
+    return id ? 'https://www.youtube.com/embed/' + id : null;
+  }catch(e){ return null; }
+}
+
+function monthYear(ts){
+  const d = new Date(ts);
+  return d.toLocaleDateString('en-US', {month:'long', year:'numeric'});
+}
+function dateShort(ts){
+  const d = new Date(ts);
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+}
+
+async function loadPosts(){
+  try{
+    const idx = await window.storage.get('posts-index', true);
+    const ids = idx ? JSON.parse(idx.value) : [];
+    const loaded = [];
+    for(const id of ids){
+      try{
+        const p = await window.storage.get('posts:' + id, true);
+        if(p) loaded.push(JSON.parse(p.value));
+      }catch(e){}
+    }
+    loaded.sort((a,b) => b.createdAt - a.createdAt);
+    posts = loaded;
+  }catch(e){
+    posts = [];
+  }
+  render();
+}
+
+async function savePost(post){
+  await window.storage.set('posts:' + post.id, JSON.stringify(post), true);
+  let ids = [];
+  try{
+    const idx = await window.storage.get('posts-index', true);
+    ids = idx ? JSON.parse(idx.value) : [];
+  }catch(e){ ids = []; }
+  ids.unshift(post.id);
+  await window.storage.set('posts-index', JSON.stringify(ids), true);
+}
+
+function render(){
+  const grid = document.getElementById('gridContainer');
+  const filtered = currentFilter === 'all' ? posts : posts.filter(p => p.type === currentFilter);
+
+  const badge = document.getElementById('issueBadge');
+  if(posts.length){
+    badge.textContent = 'Issue — ' + monthYear(posts[0].createdAt) + ' · ' + posts.length + ' piece' + (posts.length===1?'':'s');
+  } else {
+    badge.textContent = 'Issue — awaiting first piece';
+  }
+
+  if(!filtered.length){
+    grid.innerHTML = '<div class="empty"><h3>Nothing published here yet</h3><p>Use the panel above to add the first piece.</p></div>';
+    return;
+  }
+
+  grid.innerHTML = '<div class="grid">' + filtered.map(p => `
+    <div class="card" data-id="${p.id}">
+      <div class="card-meta">
+        <span>${p.category}</span>
+        <span class="badge ${p.type==='video'?'video':''}">${p.type==='video'?'Video':'Article'}</span>
+      </div>
+      <h3>${escapeHtml(p.title)}</h3>
+      <p class="excerpt">${escapeHtml((p.type==='video' ? p.videoDesc : p.body).slice(0,140))}${((p.type==='video'?p.videoDesc:p.body)||'').length>140?'…':''}</p>
+      <p class="byline">${escapeHtml(p.author)} · ${dateShort(p.createdAt)}</p>
+    </div>
+  `).join('') + '</div>';
+
+  grid.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => openModal(card.dataset.id));
+  });
+}
+
+function escapeHtml(s){
+  return (s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function openModal(id){
+  const p = posts.find(x => x.id === id);
+  if(!p) return;
+  const overlay = document.getElementById('overlay');
+  const content = document.getElementById('modalContent');
+  let inner = `
+    <div class="card-meta"><span>${p.category}</span><span class="badge ${p.type==='video'?'video':''}">${p.type==='video'?'Video':'Article'}</span></div>
+    <h2>${escapeHtml(p.title)}</h2>
+    <p class="byline">${escapeHtml(p.author)} · ${dateShort(p.createdAt)}</p>
+  `;
+  if(p.type === 'video'){
+    const embed = youtubeEmbedUrl(p.videoUrl);
+    if(embed){
+      inner += `<div class="video-embed"><iframe src="${embed}" allowfullscreen></iframe></div>`;
+    } else {
+      inner += `<p class="body-text">Couldn't read that video link. Original: ${escapeHtml(p.videoUrl)}</p>`;
+    }
+    inner += `<p class="body-text">${escapeHtml(p.videoDesc)}</p>`;
+  } else {
+    inner += `<p class="body-text">${escapeHtml(p.body)}</p>`;
+  }
+  content.innerHTML = inner;
+  overlay.classList.add('open');
+}
+
+document.getElementById('closeModal').addEventListener('click', () => {
+  document.getElementById('overlay').classList.remove('open');
+});
+document.getElementById('overlay').addEventListener('click', (e) => {
+  if(e.target.id === 'overlay') document.getElementById('overlay').classList.remove('open');
+});
+
+document.getElementById('tabs').addEventListener('click', (e) => {
+  if(e.target.tagName !== 'BUTTON') return;
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter = e.target.dataset.filter;
+  render();
+});
+
+document.getElementById('composerToggle').addEventListener('click', () => {
+  const body = document.getElementById('composerBody');
+  body.classList.toggle('open');
+  document.getElementById('composerArrow').textContent = body.classList.contains('open') ? '−' : '＋';
+});
+
+document.getElementById('typeArticleBtn').addEventListener('click', () => setType('article'));
+document.getElementById('typeVideoBtn').addEventListener('click', () => setType('video'));
+function setType(t){
+  currentType = t;
+  document.getElementById('typeArticleBtn').classList.toggle('active', t==='article');
+  document.getElementById('typeVideoBtn').classList.toggle('active', t==='video');
+  document.getElementById('articleFields').style.display = t==='article' ? 'flex' : 'none';
+  document.getElementById('videoFields').style.display = t==='video' ? 'flex' : 'none';
+}
+
+document.getElementById('publishBtn').addEventListener('click', async () => {
+  const status = document.getElementById('composerStatus');
+  const title = document.getElementById('fTitle').value.trim();
+  const author = document.getElementById('fAuthor').value;
+  const category = document.getElementById('fCategory').value;
+
+  if(!title){ status.textContent = 'Give the piece a title first.'; return; }
+
+  const post = {
+    id: 'p' + Date.now() + Math.random().toString(36).slice(2,7),
+    title, author, category,
+    type: currentType,
+    createdAt: Date.now()
+  };
+
+  if(currentType === 'article'){
+    const body = document.getElementById('fBody').value.trim();
+    if(!body){ status.textContent = 'Add the article text first.'; return; }
+    post.body = body;
+  } else {
+    const url = document.getElementById('fVideoUrl').value.trim();
+    if(!url){ status.textContent = 'Add the video link first.'; return; }
+    post.videoUrl = url;
+    post.videoDesc = document.getElementById('fVideoDesc').value.trim();
+  }
+
+  status.textContent = 'Publishing…';
+  try{
+    await savePost(post);
+    status.textContent = 'Published.';
+    document.getElementById('fTitle').value = '';
+    document.getElementById('fBody').value = '';
+    document.getElementById('fVideoUrl').value = '';
+    document.getElementById('fVideoDesc').value = '';
+    await loadPosts();
+    setTimeout(() => { status.textContent = ''; }, 2000);
+  }catch(e){
+    status.textContent = 'Could not publish — try again.';
+  }
+});
+
+loadPosts();
+</script>
+</body>
+</html>
